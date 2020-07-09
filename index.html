@@ -1,140 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css"
-    type="text/css">
-  <style>
-    .map {
-      height: 400px;
-      width: 100%;
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
-  <title>OpenLayers example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
 </head>
-
 <body>
-  <h2>My Map</h2>
-  <div id="map" class="map"></div>
-  <div id="info">&nbsp;</div>
-  <script type="text/javascript">
+    <svg id='logo' width="659" height="109" viewBox="0 0 659 109" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M27.6879 91.7214C31.1812 91.7214 34.1845 91.3004 36.6979 90.4584C39.2539 89.6165 41.3413 88.4705 42.9601 87.0204C44.6215 85.5236 45.8356 83.7929 46.6024 81.8283C47.4118 79.817 47.8165 77.6419 47.8165 75.3031C47.8165 72.9643 47.4544 70.9296 46.7302 69.1989C46.006 67.4214 44.8558 65.8311 43.2796 64.4278C41.746 63.0245 39.7438 61.6914 37.273 60.4285C34.8022 59.1655 31.8415 57.8558 28.3908 56.4993C23.8752 54.7218 20.0625 52.8508 16.9527 50.8862C13.8855 48.8749 11.3933 46.6998 9.47634 44.361C7.55933 41.9755 6.17482 39.3794 5.32282 36.5729C4.51341 33.7196 4.10871 30.5622 4.10871 27.1008C4.10871 22.8442 4.83291 19.1022 6.28132 15.8747C7.72973 12.6004 9.71064 9.86399 12.2241 7.66553C14.7801 5.46708 17.7621 3.80654 21.1701 2.68392C24.6207 1.56131 28.3269 1 32.2888 1C36.421 1 40.7023 1.7718 45.1327 3.3154C49.5631 4.81222 54.1001 7.24455 58.7435 10.6124L53.8232 20.8563C49.9465 18.1433 46.219 16.2021 42.6406 15.0327C39.1048 13.8165 35.7394 13.2084 32.5444 13.2084C27.3471 13.2084 23.3427 14.4246 20.5311 16.8569C17.7195 19.2425 16.3137 22.5636 16.3137 26.8202C16.3137 29.2057 16.6119 31.2405 17.2083 32.9244C17.8047 34.6083 18.7845 36.1285 20.1477 37.485C21.5109 38.7947 23.2788 40.0109 25.4514 41.1335C27.6666 42.2094 30.393 43.3554 33.6307 44.5715C39.2965 46.6764 43.8547 48.8047 47.3053 50.9564C50.756 53.1081 53.4185 55.3533 55.2929 57.6921C57.1673 60.0309 58.4027 62.5334 58.9991 65.1996C59.6381 67.8658 59.9576 70.8127 59.9576 74.0402C59.9576 78.671 59.2334 82.834 57.785 86.5293C56.3792 90.2246 54.3344 93.3819 51.6506 96.0014C48.9667 98.574 45.6652 100.562 41.746 101.965C37.8694 103.322 33.439 104 28.4547 104C24.5781 104 20.4246 103.345 15.9942 102.035C11.5637 100.679 6.89903 98.5506 2 95.6505L6.08962 84.705C10.2218 87.0438 14.0559 88.7979 17.5917 89.9673C21.1701 91.1367 24.5355 91.7214 27.6879 91.7214Z" stroke="white" stroke-width="2" mask="url(#path-1-outside-1)"/>
+        <path d="M145.967 102.176H129.609L94.7833 52.6403L91.2049 57.5518V102.176H78.6804V3.1049H91.2049V48.22L98.0422 39.3093L127.053 3.1049H143.156L106.477 47.0974L145.967 102.176Z" stroke="white" stroke-width="2" mask="url(#path-1-outside-1)"/>
+        <path d="M210.187 102.176H157.342V3.1049H209.612V15.3835H169.866V44.782H207.376V57.0606H169.866V89.6165H210.187V102.176Z" stroke="white" stroke-width="2" mask="url(#path-1-outside-1)"/>
+        <path d="M230.124 102.176V3.1049H245.844L287.954 80.7759L289.36 80.4251C289.317 78.9282 289.275 77.2209 289.232 75.3031C289.232 73.3386 289.211 71.3272 289.168 69.2691C289.125 67.1642 289.083 65.0826 289.04 63.0245C289.04 60.9664 289.019 59.072 288.976 57.3413C288.976 55.5638 288.976 54.0436 288.976 52.7807C288.976 51.5177 288.976 50.629 288.976 50.1144V3.1049H300.734V102.176H285.59L242.649 23.3822L241.307 23.733C241.349 25.2766 241.371 27.0307 241.371 28.9952C241.413 30.9598 241.456 33.0179 241.498 35.1696C241.541 37.2745 241.562 39.4028 241.562 41.5545C241.605 43.6594 241.626 45.6006 241.626 47.3781C241.669 49.1555 241.69 50.7225 241.69 52.079C241.69 53.3887 241.69 54.3009 241.69 54.8154V102.176H230.124Z" stroke="white" stroke-width="2" mask="url(#path-1-outside-1)"/>
+        <path d="M392.495 102.176H376.136L341.311 52.6403L337.732 57.5518V102.176H325.208V3.1049H337.732V48.22L344.57 39.3093L373.58 3.1049H389.683L353.005 47.0974L392.495 102.176Z" stroke="white" stroke-width="2" mask="url(#path-1-outside-1)"/>
+        <path d="M429.685 51.4475L453.264 3.1049H467.322L435.628 63.7963V102.176H422.848V63.7963L391.153 3.1049H405.978L429.685 51.4475Z" stroke="white" stroke-width="2" mask="url(#path-1-outside-1)"/>
+        <path d="M565.857 94.3876L505.279 66.3924V56.4993L565.857 26.8202V39.0988L519.081 61.1301L565.857 81.8985V94.3876Z" stroke="white" stroke-width="2" mask="url(#path-1-outside-1)"/>
+        <path d="M607.711 103.579C603.196 103.579 598.616 102.644 593.973 100.772C589.372 98.8547 585.112 95.861 581.193 91.7915L585.538 80.5654C587.071 82.3429 588.754 83.9332 590.586 85.3365C592.418 86.693 594.313 87.839 596.273 88.7745C598.233 89.6633 600.192 90.3415 602.152 90.8093C604.112 91.277 606.029 91.5109 607.903 91.5109C610.246 91.5109 612.461 91.1835 614.549 90.5286C616.679 89.827 618.532 88.7979 620.108 87.4414C621.727 86.0381 623.005 84.2841 623.942 82.1792C624.922 80.0275 625.412 77.4782 625.412 74.5313C625.412 70.8828 624.709 67.9594 623.303 65.7609C621.897 63.5624 620.044 61.8785 617.744 60.7091C615.486 59.5397 612.93 58.7679 610.076 58.3937C607.221 58.0195 604.346 57.8324 601.449 57.8324C601.236 57.8324 600.917 57.8558 600.49 57.9026C600.107 57.9026 599.724 57.9026 599.34 57.9026H597.935V46.3256C598.275 46.3724 598.616 46.3958 598.957 46.3958C599.255 46.4426 599.553 46.4659 599.852 46.4659C600.15 46.4659 600.427 46.4659 600.682 46.4659C603.579 46.4659 606.391 46.2321 609.117 45.7643C611.843 45.2965 614.272 44.4312 616.402 43.1683C618.532 41.9053 620.236 40.198 621.514 38.0463C622.792 35.8479 623.431 33.0179 623.431 29.5565C623.431 27.4516 623.047 25.5338 622.281 23.8031C621.514 22.0257 620.427 20.5054 619.022 19.2425C617.658 17.9796 615.997 16.9973 614.037 16.2956C612.078 15.594 609.926 15.2432 607.583 15.2432C604.772 15.2432 601.619 16.0384 598.126 17.6287C594.676 19.1723 590.948 21.6748 586.944 25.1362L580.809 16.6465C585.069 12.2495 589.585 8.99864 594.356 6.89373C599.17 4.74205 603.813 3.66621 608.286 3.66621C612.035 3.66621 615.571 4.22752 618.894 5.35014C622.259 6.47275 625.199 8.1099 627.712 10.2616C630.268 12.4133 632.292 15.0561 633.783 18.1901C635.274 21.324 636.019 24.9024 636.019 28.9251C636.019 31.2639 635.7 33.5559 635.061 35.8011C634.422 37.9995 633.442 40.1045 632.121 42.1158C630.843 44.0804 629.224 45.9046 627.265 47.5886C625.348 49.2257 623.09 50.629 620.491 51.7984C624.027 52.9678 626.924 54.5347 629.182 56.4993C631.482 58.4639 633.271 60.5454 634.549 62.7439C635.87 64.8955 636.765 67.0706 637.233 69.2691C637.744 71.4208 638 73.2918 638 74.8821C638 79.4194 637.148 83.4655 635.444 87.0204C633.783 90.5754 631.546 93.5924 628.734 96.0715C625.965 98.5039 622.749 100.375 619.086 101.685C615.464 102.948 611.673 103.579 607.711 103.579Z" stroke="white" stroke-width="2" mask="url(#path-1-outside-1)"/>
+        </svg>       
 
-    // import 'ol/ol.css';
-    // import Map from 'ol/Map';
-    // import View from 'ol/View';
-    // import GeoJSON from 'ol/format/GeoJSON';
-    // import VectorLayer from 'ol/layer/Vector';
-    // import VectorSource from 'ol/source/Vector';
-    // import { Fill, Stroke, Style, Text } from 'ol/style';
-
-    var style = new ol.style.Style({
-      fill: new ol.style.Fill({
-        color: 'rgba(255, 255, 255, 0.6)'
-      }),
-      stroke: new ol.style.Stroke({
-        color: '#319FD3',
-        width: 1
-      }),
-      text: new ol.style.Text({
-        font: '12px Calibri,sans-serif',
-        fill: new ol.style.Fill({
-          color: '#000'
-        }),
-        stroke: new ol.style.Stroke({
-          color: '#fff',
-          width: 3
-        })
-      })
-    });
-
-    var vectorLayer = new ol.layer.Vector({
-      source: new ol.source.Vector({
-        url: 'countries.geojson',
-        format: new ol.format.GeoJSON()
-      }),
-      style: function (feature) {
-        style.getText().setText(feature.get('name'));
-        return style;
-      }
-    });
-
-    var map = new ol.Map({
-      layers: [vectorLayer],
-      target: 'map',
-      view: new ol.View({
-        center: [0, 0],
-        zoom: 1
-      })
-    });
-
-    var highlightStyle = new ol.style.Style({
-      stroke: new ol.style.Stroke({
-        color: '#f00',
-        width: 1
-      }),
-      fill: new ol.style.Fill({
-        color: 'rgba(255,0,0,0.1)'
-      }),
-      text: new ol.style.Text({
-        font: '12px Calibri,sans-serif',
-        fill: new ol.style.Fill({
-          color: '#000'
-        }),
-        stroke: new ol.style.Stroke({
-          color: '#f00',
-          width: 3
-        })
-      })
-    });
-
-    var featureOverlay = new ol.layer.Vector({
-      source: new ol.source.Vector(),
-      map: map,
-      style: function (feature) {
-        highlightStyle.getText().setText(feature.get('name'));
-        return highlightStyle;
-      }
-    });
-
-    var highlight;
-    var displayFeatureInfo = function (pixel) {
-
-      var feature = map.forEachFeatureAtPixel(pixel, function (feature) {
-        return feature;
-      });
-
-      var info = document.getElementById('info');
-      if (feature) {
-        info.innerHTML = feature.getId() + ': ' + feature.get('name');
-      } else {
-        info.innerHTML = '&nbsp;';
-      }
-
-      if (feature !== highlight) {
-        if (highlight) {
-          featureOverlay.getSource().removeFeature(highlight);
-        }
-        if (feature) {
-          featureOverlay.getSource().addFeature(feature);
-        }
-        highlight = feature;
-      }
-
-    };
-
-    map.on('pointermove', function (evt) {
-      if (evt.dragging) {
-        return;
-      }
-      var pixel = map.getEventPixel(evt.originalEvent);
-      displayFeatureInfo(pixel);
-    });
-
-    map.on('click', function (evt) {
-      displayFeatureInfo(evt.pixel);
-    });
-  </script>
+        <script src="./app.js"></script>
 </body>
-
 </html>
