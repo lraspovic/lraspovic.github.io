@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Diplomski rad</title>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html,
+        body,
+        #map {
+            height: 100%;
+            width: 100vw;
+        }
+
+        .container {
+            display: flex;
+            position: relative;
+            top: 3%;
+            left: 3%;
+            margin: 10px;
+            padding: 10px;
+            flex-flow: column wrap;
+            z-index: 1000;
+            width: 320px;
+            overflow: hidden;
+        }
+
+        .county_name_container {
+            font-size: 1.2em;
+            cursor: pointer;
+            color: white;
+            background-color: rgba(45, 106, 219, 0.925);
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            padding: 5px;
+            width: 70%;
+            transition: all 0.4s;
+            text-align: center;
+        }
+
+        .county_name_container_expand {
+            width: 100%;
+            -webkit-border-radius: 10px 10px 0px 0px;
+            -moz-border-radius: 10px 10px 0px 0px;
+            border-radius: 10px 10px 0px 0px;
+            font-size: 1.5em;
+        }
+
+        .county_stats_container_hide {
+            height: 0px;
+            transition: all 0.4s ease-in-out
+        }
+
+        .county_stats_container {
+            display: flex;
+            flex-flow: column nowrap;
+            background-color: rgba(172, 172, 231, 0.7);
+            padding: 5px;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            -webkit-border-radius: 0px 0px 10px 10px;
+            -moz-border-radius: 0px 0px 10px 10p;
+            border-radius: 0px 0px 10px 10p;
+            transition: all 0.4s ease-in-out
+        }
+
+        /* RADIO TOOGLE */
+        .toggle_radio_hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .toggle_radio {
+            visibility: visible;
+            opacity: 1;
+            position: relative;
+            background: rgba(2, 6, 14, 0.5);
+            margin: 0.6em 3em;
+            overflow: hidden;
+            /* padding: 0 !important; */
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            height: 40px;
+            width: 210px;
+            transition: 0.4s;
+        }
+
+        .toggle_radio>* {
+            float: left;
+        }
+
+        .toggle_radio input[type=radio] {
+            display: none;
+        }
+
+        .toggle_radio label {
+            font: "Helvetica";
+            font-size: 1em;
+            text-align: center;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 1);
+            z-index: 1;
+            width: 102px;
+            height: 20px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            z-index: 1;
+        }
+
+        .toggle_option_slider {
+            width: 100px;
+            height: 30px;
+            position: absolute;
+            top: 5px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+
+        #alcc:checked~.toggle_option_slider {
+            background: rgba(0, 217, 255, 0.3);
+            left: 4px;
+        }
+
+        #xgb:checked~.toggle_option_slider {
+            background: rgba(7, 235, 216, 0.3);
+            left: 106px;
+        }
+
+        #october:checked~.toggle_option_slider {
+            background: rgba(255, 255, 0, .3);
+            left: 4px;
+        }
+
+        #april:checked~.toggle_option_slider {
+            background: rgba(83, 233, 83, 0.3);
+            left: 106px;
+        }
+
+        /*CHART */
+        .chart_hide {
+            display: none;
+        }
+
+        #chart {
+            position: relative;
+            padding-top: 12px;
+            width: 100%;
+        }
+
+        .apexcharts-toolbar {
+            display: none;
+        }
+
+        .info-button {
+            position: absolute;
+            height: 36px;
+            width: 36px;
+            background: url('img/i_regular.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* background-color: red; */
+            bottom: 25px;
+            right: 10px;
+            border-radius: 20%;
+            z-index: 1000;
+        }
+
+        .info-button:hover {
+            display: block;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            background: url('img/i_highlihgted.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+
+        .info-button-hide {
+            display: none;
+        }
+
+        .info-text-container {
+            display: hidden;
+            opacity: 0;
+            position: absolute;
+            height: 36px;
+            width: 36px;
+            background-color: rgb(191, 217, 255);
+            bottom: 25px;
+            right: 10px;
+            border-radius: 5px;
+            z-index: 999;
+        }
+
+        .info-text-container-show {
+            display: flex;
+            flex-flow: column;
+            opacity: 1;
+            width: 300px;
+            height: 400px;
+            z-index: 1001;
+            padding: 10px;
+            overflow: auto;
+            border: 2px solid black;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+
+        .info-text-close {
+            width: 100%;
+            height: 5%;
+        }
+
+        .info-text-close-button {
+            position: 'absolute';
+            width: 20px;
+            height: 20px;
+            background-color: rgb(102, 9, 24);
+            padding-left: 11px;
+            border-radius: 5px;
+        }
+
+        .info-text-close-button::before {
+            content: 'X';
+            color: #fff;
+            font-weight: 600;
+            font-family: Arial, sans-serif;
+            font-size: larger;
+        }
+
+        .info-text-close-button:hover {
+            background-color: rgb(172, 13, 40);
+            cursor: pointer;
+        }
+
+
+        .info-text {
+            width: 100%;
+            height: 95%;
+            text-align: justify;
+        }
+
+
+
+        @media (max-width: 600px) {
+            .container {
+                width: 70%;
+                padding: 0;
+                margin: 0;
+                top: 1%;
+                left: 1%;
+            }
+
+            .county_name_container_expand {
+                width: 90%;
+            }
+
+            .county_stats_container {
+                width: 90%;
+            }
+
+            .toggle_radio {
+                margin: 0.5em 0em;
+                width: 150px;
+            }
+
+            .toggle_radio label {
+                width: 75px;
+            }
+
+            .toggle_option_slider {
+                width: 75px
+            }
+
+            #xgb:checked~.toggle_option_slider,
+            #april:checked~.toggle_option_slider {
+                left: 72px;
+            }
+
+            #chart {
+                left: -10px;
+            }
+
+            .info-button {
+                bottom: 40px;
+            }
+
+
+            .info-text-container {
+                bottom: 40px;
+            }
+
+            .info-text-container-show {
+                width: 200px;
+                height: 250px;
+            }
+
+
+        }
+
+        @media (orientation: landscape) and (max-width:1000px) {
+
+            .container {
+                display: flex;
+                position: relative;
+                top: 1%;
+                left: 1%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .county_name_container_expand {
+                width: 80%;
+            }
+
+            .county_stats_container {
+                width: 80%;
+                height: 70vh;
+            }
+
+            .toggle_radio {
+                margin: 0.1em;
+                height: 37px;
+            }
+
+            .toggle_radio label {
+                font-size: 0.9em;
+            }
+
+            .toggle_option_slider {
+                top: 3px;
+            }
+
+            #chart {
+                top: 20px;
+                height: 70%;
+                padding-top: 0;
+                margin: 0;
+            }
+
+            .info-button {
+                bottom: 30px;
+            }
+
+            .info-text-container {
+                bottom: 30px;
+            }
+
+            .info-text-container-show {
+                width: 200px;
+                height: 250px;
+                overflow: auto;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id='map'>
+        <div class="container">
+            <div class='county_name_container' id='county_name'>Select county</div>
+            <div class='county_stats_container_hide' id="county_stats">
+                <div class="toggle_radio_hidden">
+                    <input type="radio" id="alcc" name="klasifikacija" checked>
+                    <input type="radio" id="xgb" name="klasifikacija">
+                    <label for="alcc">
+                        <p>ALCC</p>
+                    </label>
+                    <label for="xgb">
+                        <p>XGBoost</p>
+                    </label>
+                    <div class="toggle_option_slider">
+                    </div>
+                </div>
+                <div class="toggle_radio_hidden">
+                    <input type="radio" id="october" name="period" checked>
+                    <input type="radio" id="april" name="period">
+                    <label for="october">
+                        <p>October</p>
+                    </label>
+                    <label for="april">
+                        <p>April</p>
+                    </label>
+                    <div class="toggle_option_slider">
+                    </div>
+                </div>
+                <div id="chart" class="chart_hide"></div>
+            </div>
+        </div>
+        <div class="info-button">
+        </div>
+        <div class="info-text-container">
+            <div class="info-text-close">
+                <div class="info-text-close-button"></div>
+            </div>
+            <div class="info-text">
+                <p>
+                    This is web GIS for detecting environmental changes using Sentinel 2 satellite imagery. Changes in
+                    enviroment are detected using algorithms for automatic classification of land cover.
+                    Two algorithms are used:
+                </p>
+                <ul>
+                    <li>ALCC</li>
+                    <li>XGBoost</li>
+                </ul>
+                <p>ALCC is based on unsupervised classification using k-means and vegetation indices. Vegetation indices
+                    are used to highlight each of the classes and k-means is used to extract the class from the index.
+                    XGBoost is commonly used method for machine learning and solving problems like regression and
+                    classification. Its main advantage is its speed.
+                    Automatisation of XGBoost algorithm is achieved by also using vegetation indices. Training data for
+                    each class is automatically selected from different indices based on threshold values.
+                    Each one classifies satellite images into 6 classes</p>
+                <ul>
+                    <li>Water</li>
+                    <li>Low vegetation</li>
+                    <li>High vegetation</li>
+                    <li>Bare soil</li>
+                    <li>Built up</li>
+                    <li>Clouds</li>
+                </ul>
+                <p>All 21 Croatian counties are classified using these two algorithms. All counties are classified
+                    twice, once in October once in April. Classifications and
+                    RGB images are avaliable to see for every county. Selecting a county adds RGB and Classification
+                    layer in layer control (top right), with Classification layer turned on. </p>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const octoberPath = '10 mjesec/zupanije';
+        const aprilPath = '4 mjesec/zupanije';
+        const rgbPath = 'RGB.jpg';
+        const alccPath = 'ALCC.png';
+        const xgbPath = 'XGB.png';
+
+
+        let selected_county = false;
+        let selected_zupanija;
+        let chart;
+        let nameProperty;
+        let bbox;
+        let stats;
+        let clsPeriod;
+        let clsImage;
+        let RGBimage;
+        let layersInControl = false;
+        let infoButton;
+        let infoText;
+        let infoClose;
+
+        let map = L.map('map', { zoomControl: false }).setView([45, 16.5], 7);
+        let zoom = L.control.zoom({ position: 'topright' })
+        zoom.addTo(map)
+        L.control.scale().addTo(map);
+
+        let osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>' + ' Vector data <a href=https://eurogeographics.org/>© EuroGeographics</a>' + ' Charts <a href=https://apexcharts.com/>© ApexCharts</a>' }).addTo(map);
+        let mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>' + ' Vector data <a href=https://eurogeographics.org/>© EuroGeographics</a>' + ' Charts <a href=https://apexcharts.com/>© ApexCharts</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 256,
+            // zoomOffset: -1
+        });
+
+        // Image pane for raster images
+        map.createPane('imagePane');
+        map.getPane('imagePane').style.zIndex = 401;
+
+        let basemaps = {
+            "OSM": osm,
+            "Mapbox": mapbox
+        };
+
+        let layerSwitcher = L.control.layers(baseLayers = basemaps).addTo(map)
+
+        let zupanije;
+        fetch('counties/counties.geojson')
+            .then(response => response.json())
+            .then(json => {
+                zupanije = L.geoJson(json, {
+                    style: style,
+                    onEachFeature: onEachFeature,
+                    zIndex: 10
+                }).addTo(map);
+                layerSwitcher.addOverlay(zupanije, 'Counties');
+                chart = createChart()
+            }
+            );
+
+        const county_name = document.querySelector("#county_name");
+
+        county_name.addEventListener('click', function () {
+            county_name.classList.remove('county_name_container_expand')
+            county_name.innerHTML = 'Select county';
+            document.querySelector('#county_stats').classList.remove('county_stats_container')
+            radioButtons = document.querySelectorAll('.toggle_radio_hidden')
+            radioButtons.forEach(element => {
+                element.classList.remove('toggle_radio')
+            });
+            document.querySelector('#chart').classList.add('chart_hide')
+            document.querySelector('#alcc').checked = true;
+            document.querySelector('#october').checked = true;
+            selected_county = false;
+            removeImage();
+            layersInControl = false;
+            chart.resetSeries()
+        })
+
+        function createChart() {
+            let options = {
+                chart: {
+                    type: 'bar',
+                    redrawOnParentResize: true
+                },
+                labels: ['Water', 'Low vegetation', 'High vegetation', 'Bare soil', 'Built up', 'Clouds'],
+                series: [],
+                noData: {
+                    text: 'Loading...'
+                },
+                fill: {
+                    colors: ['#3d9dd9', '#19df47', '#299c00', '#a25400', '#ff1a01', '#efefef']
+                },
+                plotOptions: {
+                    bar: {
+                        distributed: true,
+                        barWidth: '100%',
+                        barHeight: '100%'
+                    }
+                },
+                datalabels: {
+                    enabled: true,
+                    formatter: function (val) {
+                        return val + "%";
+                    },
+                    style: {
+                        fontSize: '12px',
+                        colors: ["#304758"]
+                    },
+                },
+                grid: {
+                    yaxis: {
+                        lines: {
+                            show: false,
+                        }
+                    },
+                    xaxis: {
+                        lines: {
+                            show: false,
+                        }
+                    }
+                },
+                legend: {
+                    show: false,
+                },
+                responsive: [
+                    {
+                        breakpoint: 600,
+                        options: {
+                            plotOptions: {
+                                bar: {
+                                    horizontal: true
+                                }
+                            },
+                            xaxis: {
+                                axisBorder: {
+                                    show: false
+                                },
+                                axisTicks: {
+                                    show: false,
+                                },
+                                labels: {
+                                    show: false,
+                                }
+                            },
+                            yaxis: {
+                                axisBorder: {
+                                    show: true
+                                },
+                                axisTicks: {
+                                    show: false
+                                },
+                            },
+                        }
+                    }]
+            }
+            chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render()
+            return chart
+        }
+
+        function updateChart(data) {
+            chart.updateOptions({
+                xaxis: {
+                    axisBorder: {
+                        show: true
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    labels: {
+                        show: true
+                    }
+                },
+                yaxis: {
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false,
+                    },
+                    labels: {
+                        show: false,
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                    },
+                },
+
+            });
+            chart.updateSeries([{
+                name: 'Coverage (%)',
+                data: data,
+            }]);
+        }
+
+        function style(feature) {
+            return {
+                fillColor: 'blue',
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                dashArray: '3',
+                fillOpacity: 0.5
+            };
+        }
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: zoomToFeature
+            });
+        }
+
+        function highlightFeature(e) {
+            let layer = e.target;
+
+            if (selected_county == false) {
+                nameProperty = e.target.feature.properties.name
+                county_name.innerHTML = nameProperty.charAt(0).toUpperCase() + nameProperty.slice(1)
+            }
+            layer.setStyle({
+                weight: 5,
+                color: 'white',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+        }
+
+        function resetHighlight(e) {
+            zupanije.resetStyle(e.target);
+            if (selected_county == false) {
+                county_name.innerHTML = 'Select county';
+            }
+        }
+
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+            showCoutyStats(e)
+        }
+
+        document.querySelector('#alcc').addEventListener('click', function () {
+            [stats, clsPeriod] = checkStats(selected_zupanija)
+            updateChart(stats)
+            addImage(selected_zupanija.name, bbox, clsPeriod)
+        })
+        document.querySelector('#xgb').addEventListener('click', function () {
+            [stats, clsPeriod] = checkStats(selected_zupanija)
+            updateChart(stats)
+            addImage(selected_zupanija.name, bbox, clsPeriod)
+        })
+        document.querySelector('#october').addEventListener('click', function () {
+            [stats, clsPeriod] = checkStats(selected_zupanija)
+            updateChart(stats)
+            addImage(selected_zupanija.name, bbox, clsPeriod)
+        })
+        document.querySelector('#april').addEventListener('click', function () {
+            [stats, clsPeriod] = checkStats(selected_zupanija)
+            updateChart(stats)
+            addImage(selected_zupanija.name, bbox, clsPeriod)
+        })
+
+        function checkStats(selected_zupanija) {
+            if (document.querySelector('#alcc').checked) {
+                if (document.querySelector('#october').checked) {
+                    return [selected_zupanija.ALCC_10.slice(0, selected_zupanija.ALCC_10.length - 1), [octoberPath, alccPath]];
+                } else {
+                    return [selected_zupanija.ALCC_04.slice(0, selected_zupanija.ALCC_04.length - 1), [aprilPath, alccPath]];
+                }
+            } else {
+                if (document.querySelector('#october').checked) {
+                    return [selected_zupanija.XGB_10.slice(0, selected_zupanija.XGB_10.length - 1), [octoberPath, xgbPath]];
+                } else {
+                    return [selected_zupanija.XGB_04.slice(0, selected_zupanija.XGB_04.length - 1), [aprilPath, xgbPath]];
+                }
+            }
+        }
+
+        function showCoutyStats(e) {
+            selected_county = true
+            selected_zupanija = e.target.feature.properties
+            nameProperty = selected_zupanija.name
+            bbox = e.target.feature.bbox
+            document.querySelector('#county_stats').classList.add('county_stats_container')
+            county_name.classList.add('county_name_container_expand')
+            county_name.innerHTML = nameProperty.charAt(0).toUpperCase() + nameProperty.slice(1)
+            radioButtons = document.querySelectorAll('.toggle_radio_hidden')
+            radioButtons.forEach(element => {
+                element.classList.add('toggle_radio')
+            });
+            [stats, clsPeriod] = checkStats(selected_zupanija)
+            updateChart(stats);
+            document.querySelector('#chart').classList.remove('chart_hide')
+            addImage(nameProperty, bbox, clsPeriod)
+        }
+
+        function addImage(name, bbox, clsPeriod) {
+            if (layersInControl) {
+                removeImage();
+            }
+            else {
+                layersInControl = true;
+            }
+            clsImage = L.imageOverlay(clsPeriod[0] + '/' + name + '/' + clsPeriod[1], [[bbox[1], bbox[0]], [bbox[3], bbox[2]]], { pane: 'imagePane' });
+            setTimeout(function () { clsImage.addTo(map); }, 500);
+            RGBimage = L.imageOverlay(clsPeriod[0] + '/' + name + '/' + rgbPath, [[bbox[1], bbox[0]], [bbox[3], bbox[2]]], { pane: 'imagePane' });
+            layerSwitcher.addOverlay(RGBimage, 'RGB');
+            layerSwitcher.addOverlay(clsImage, 'Classification');
+        }
+
+        function removeImage() {
+            layerSwitcher.removeLayer(RGBimage)
+            layerSwitcher.removeLayer(clsImage)
+            if (map.hasLayer(clsImage)) {
+                map.removeLayer(clsImage)
+            }
+            if (map.hasLayer(RGBimage)) {
+                map.removeLayer(RGBimage)
+            }
+        }
+
+        infoButton = document.querySelector('.info-button');
+        infoText = document.querySelector('.info-text-container');
+        infoClose = document.querySelector('.info-text-close-button');
+
+        infoButton.addEventListener('click', function () {
+            infoText.classList.add('info-text-container-show');
+            infoButton.classList.add('info-button-hide');
+        })
+
+        infoClose.addEventListener('click', function () {
+            infoText.classList.remove('info-text-container-show');
+            infoButton.classList.remove('info-button-hide');
+        })
+    </script>
+</body>
+
+</html>
