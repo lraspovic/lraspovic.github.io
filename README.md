@@ -26,16 +26,18 @@ Two methods are used for classification:
 - supervised classification - XGBoost
 - unsupervised classification - ALCC (automatic land cover classification)
 
-   *Classifications example*
-  <figure>
-      <img src="https://user-images.githubusercontent.com/55063375/115278372-a9e36700-a145-11eb-8601-98b6f5bb90c5.png" alt="Classification_example" style="width:100%">
-   </figure>
-
 Images are classified in 6 classes:
 
   <figure>
       <img src="https://user-images.githubusercontent.com/55063375/115279075-866cec00-a146-11eb-8d10-cdee3fef23d0.png" alt="Classification_example" style="width:50%, height:50%">
    </figure>
+
+
+   *Classifications example*
+  <figure>
+      <img src="https://user-images.githubusercontent.com/55063375/115278372-a9e36700-a145-11eb-8601-98b6f5bb90c5.png" alt="Classification_example" style="width:100%">
+   </figure>
+
 
 
 All classifications are shown in web gis created using Leaflet library.
