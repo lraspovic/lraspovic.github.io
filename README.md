@@ -1,16 +1,16 @@
-**senL2Aproduct** and **senL2Aclass** are Python API-s used for searching, downloading and processing Sentinel L2A satellite images that cover specific area of interes.
+**senL2Aproduct** and **senL2Aclass** are Python API-is used for searching, downloading and processing Sentinel L2A satellite images that cover a specific area of interest.
 
 ## senL2Aproduct
 
 Used for 2 sets of operations:
- - searching, previewing and downloading satelite images
+ - searching, previewing and downloading satellite images
    
    *Preview example*
  <figure>
       <img src="https://user-images.githubusercontent.com/55063375/115270057-3be67200-a13c-11eb-8f59-48ccbc0082f3.png" alt="Preview_example" style="width:100%">
    </figure>
    
- - mozaicing, clipping and stacking images
+ - mozaic creation, clipping and stacking images
 
    *Clip example*
   <figure>
@@ -20,7 +20,7 @@ Used for 2 sets of operations:
 
 ## senL2Aclass
 
-Used for automatic classification of Sentinel L2A satellite images.
+Used for automatic land cover classification of Sentinel L2A satellite images.
 
 Two methods are used for classification:
 - supervised classification - XGBoost
@@ -40,12 +40,12 @@ Images are classified in 6 classes:
 
 
 
-All classifications are shown in web gis created using Leaflet library.
+All classifications are shown in web GIS created using Leaflet.js library.
 
 https://lraspovic.github.io
 
-This project was a part of master thesis.  
-Entire thesis (in Croatian) can be found in the following link:
+This project was a part of a master's thesis.
+The entire thesis (in Croatian) can be found at the following link
 https://drive.google.com/file/d/1XA72yIkKAzVB2-j8irlLGd6FEZkXUymr/view?usp=sharing
 
 
