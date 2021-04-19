@@ -6,13 +6,13 @@ Used for 2 types of operation:
  - searching, previewing and downloading satelite images
    
    *Preview example*
- - <figure>
+ <figure>
       <img src="https://user-images.githubusercontent.com/55063375/115270057-3be67200-a13c-11eb-8f59-48ccbc0082f3.png" alt="Preview_example" style="width:100%">
    </figure>
  - mozaicing, clipping and stacking images
 
   *Clip example*
- - ![image](https://user-images.githubusercontent.com/55063375/115272148-5e798a80-a13e-11eb-9f87-cbd337b80b98.png)
+  ![image](https://user-images.githubusercontent.com/55063375/115272148-5e798a80-a13e-11eb-9f87-cbd337b80b98.png)
 
 
 
