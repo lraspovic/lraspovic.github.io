@@ -4,11 +4,16 @@
 
 Used for 2 types of operation:
  - searching, previewing and downloading satelite images
- - *Preview example*
+ 
  - <figure>
       <img src="https://user-images.githubusercontent.com/55063375/115270057-3be67200-a13c-11eb-8f59-48ccbc0082f3.png" alt="Preview_example" style="width:100%">
+      <figcaption>Preview example</figcaption>
    </figure>
- 
+ - mozaicing, clipping and stacking images
+ - <figure>
+      <img src="![image](https://user-images.githubusercontent.com/55063375/115272027-3be77180-a13e-11eb-9a98-feafc3ed4607.png)" alt="Clip example" style="width:100%">
+      <figcaption>Preview example</figcaption>
+   </figure>
 
 ## Describe your project
 
