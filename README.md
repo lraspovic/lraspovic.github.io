@@ -13,9 +13,10 @@ Used for 2 types of operation:
  - mozaicing, clipping and stacking images
 
   *Clip example*
-  ![image](https://user-images.githubusercontent.com/55063375/115272148-5e798a80-a13e-11eb-9f87-cbd337b80b98.png)
-
-
+  <figure>
+      <img src="https://user-images.githubusercontent.com/55063375/115272148-5e798a80-a13e-11eb-9f87-cbd337b80b98.png" alt="Preview_example" style="width:100%">
+   </figure>
+  
 
 ## Describe your project
 
