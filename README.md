@@ -28,8 +28,9 @@ Two methods are used for classification:
 
    *Classifications example*
   <figure>
-      <img src="![image](https://user-images.githubusercontent.com/55063375/115277333-705e2c00-a144-11eb-896c-d1cf01927b9a.png)" alt="Preview_example" style="width:100%">
+      <img src="https://user-images.githubusercontent.com/55063375/115277333-705e2c00-a144-11eb-896c-d1cf01927b9a.png" alt="Preview_example" style="width:100%">
    </figure>
+
    
 Images are classified in 6 classes:
 
