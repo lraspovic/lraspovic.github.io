@@ -2,7 +2,7 @@
 
 ## senL2Aproduct
 
-Used for 2 types of operation:
+Used for 2 sets of operations:
  - searching, previewing and downloading satelite images
    
    *Preview example*
@@ -18,11 +18,21 @@ Used for 2 types of operation:
    </figure>
   
 
-## Describe your project
+## senL2Aclass
 
-You are currently viewing your project's **README** file. **_README_** files are like cover pages or elevator pitches for your project. They are written in plain text or [Markdown language](https://guides.github.com/features/mastering-markdown/), and usually include a paragraph describing the project, directions on how to use it, who authored it, and more.
+Used for automatic classification of Sentinel L2A satellite images.
 
-[Learn more about READMEs](https://help.github.com/en/articles/about-readmes)
+Two methods are used for classification:
+- supervised classification - XGBoost
+- unsupervised classification - ALCC (automatic land cover classification)
+
+   *Classifications example*
+  <figure>
+      <img src="![image](https://user-images.githubusercontent.com/55063375/115273605-0d6a9600-a140-11eb-96fc-cb661b1ad0b7.png)" alt="Preview_example" style="width:100%">
+   </figure>
+
+
+
 
 ## Your first website
 
