@@ -1,12 +1,14 @@
-# Welcome to GitHub
+senL2Aproduct and senL2Aclass are Python API-s used for searching, downloading and processing Sentinel L2A satellite images that cover specific area of interes.
 
-Welcome to GitHub—where millions of developers work together on software. Ready to get started? Let’s learn how this all works by building and publishing your first GitHub Pages website!
+## senL2Aproduct
 
-## Repositories
+Used for 2 types of operation:
+ - searching, previewing and downloading satelite images
+ - Example of image preview
+ - ![image](https://user-images.githubusercontent.com/55063375/115270057-3be67200-a13c-11eb-8f59-48ccbc0082f3.png)
 
-Right now, we’re in your first GitHub **repository**. A repository is like a folder or storage space for your project. Your project's repository contains all its files such as code, documentation, images, and more. It also tracks every change that you—or your collaborators—make to each file, so you can always go back to previous versions of your project if you make any mistakes.
 
-This repository contains three important files: The HTML code for your first website on GitHub, the CSS stylesheet that decorates your website with colors and fonts, and the **README** file. It also contains an image folder, with one image file.
+
 
 ## Describe your project
 
