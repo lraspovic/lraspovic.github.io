@@ -10,10 +10,9 @@ Used for 2 types of operation:
       <figcaption>Preview example</figcaption>
    </figure>
  - mozaicing, clipping and stacking images
- - <figure>
-      <img src="![image](https://user-images.githubusercontent.com/55063375/115272027-3be77180-a13e-11eb-9a98-feafc3ed4607.png)" alt="Clip example" style="width:100%">
-      <figcaption>Preview example</figcaption>
-   </figure>
+ - ![image](https://user-images.githubusercontent.com/55063375/115272148-5e798a80-a13e-11eb-9f87-cbd337b80b98.png)
+
+
 
 ## Describe your project
 
