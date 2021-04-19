@@ -36,7 +36,7 @@ Images are classified in 6 classes:
 ![image](https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png)
 
   <figure>
-      <img src="https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png" alt="Classes" style="width:100%">
+      <img src="![image](https://user-images.githubusercontent.com/55063375/115278213-7dc7e600-a145-11eb-9cc5-c35037ec2e41.png)" alt="Classes" style="width:100%">
    </figure>
 
 
