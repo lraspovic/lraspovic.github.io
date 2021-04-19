@@ -32,12 +32,14 @@ Two methods are used for classification:
    </figure>
    
 Images are classified in 6 classes:
+![image](https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png)
+
   <figure>
-      <img src="![image](![image](https://user-images.githubusercontent.com/55063375/115274547-1445d880-a141-11eb-82de-84aadbbfd02c.png))" alt="Preview_example" style="width:100%">
+      <img src="![image](https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png)" alt="Preview_example" style="width:100%">
    </figure>
 
 
-All clasifications are shown in web gis created using Leaflet libary.
+All classifications are shown in web gis created using Leaflet libary.
 
 This project was a part of master thesis.  
 Entire thesis (in croatian) can be found in the following link:
