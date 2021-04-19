@@ -33,6 +33,7 @@ Two methods are used for classification:
 
    
 Images are classified in 6 classes:
+![image](https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png)
 
   <figure>
       <img src="![image](https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png)" alt="Preview_example" style="width:50%">
