@@ -28,12 +28,14 @@ Two methods are used for classification:
 
    *Classifications example*
   <figure>
-      <img src="https://user-images.githubusercontent.com/55063375/115277333-705e2c00-a144-11eb-896c-d1cf01927b9a.png" alt="Classification_example" style="width:100%">
+      <img src="https://user-images.githubusercontent.com/55063375/115278372-a9e36700-a145-11eb-8601-98b6f5bb90c5.png" alt="Classification_example" style="width:100%">
    </figure>
 
-   
+![image](https://user-images.githubusercontent.com/55063375/115278372-a9e36700-a145-11eb-8601-98b6f5bb90c5.png)
+
 Images are classified in 6 classes:
-![image](https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png)
+![image](https://user-images.githubusercontent.com/55063375/115278258-891b1180-a145-11eb-9011-7217340048a7.png)
+
 
   <figure>
       <img src="![image](https://user-images.githubusercontent.com/55063375/115278213-7dc7e600-a145-11eb-9cc5-c35037ec2e41.png)" alt="Classes" style="width:100%">
