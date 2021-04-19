@@ -34,7 +34,7 @@ Two methods are used for classification:
 Images are classified in 6 classes:
 
   <figure>
-      <img src="https://user-images.githubusercontent.com/55063375/115278258-891b1180-a145-11eb-9011-7217340048a7.png" alt="Classification_example" style="width:100%">
+      <img src="https://user-images.githubusercontent.com/55063375/115279075-866cec00-a146-11eb-8d10-cdee3fef23d0.png" alt="Classification_example" style="width:50%, height:50%">
    </figure>
 
 
@@ -42,7 +42,7 @@ All classifications are shown in web gis created using Leaflet library.
 https://lraspovic.github.io
 
 This project was a part of master thesis.  
-Entire thesis (in croatian) can be found in the following link:
+Entire thesis (in Croatian) can be found in the following link:
 https://drive.google.com/file/d/1XA72yIkKAzVB2-j8irlLGd6FEZkXUymr/view?usp=sharing
 
 
