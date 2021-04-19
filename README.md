@@ -1,4 +1,4 @@
-**senL2Aproduct** and **senL2Aclass** are Python API-is used for searching, downloading and processing Sentinel L2A satellite images that cover a specific area of interest.
+**senL2Aproduct** and **senL2Aclass** are Python API-is used for searching, downloading, analysing and classifying Sentinel L2A satellite images that cover a specific area of interest.
 
 ## senL2Aproduct
 
