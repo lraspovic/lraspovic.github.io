@@ -14,7 +14,7 @@ Used for 2 sets of operations:
 
    *Clip example*
   <figure>
-      <img src="https://user-images.githubusercontent.com/55063375/115272148-5e798a80-a13e-11eb-9f87-cbd337b80b98.png" alt="Preview_example" style="width:100%">
+      <img src="https://user-images.githubusercontent.com/55063375/115272148-5e798a80-a13e-11eb-9f87-cbd337b80b98.png" alt="Clip_example" style="width:100%">
    </figure>
   
 
@@ -28,7 +28,7 @@ Two methods are used for classification:
 
    *Classifications example*
   <figure>
-      <img src="https://user-images.githubusercontent.com/55063375/115277333-705e2c00-a144-11eb-896c-d1cf01927b9a.png" alt="Preview_example" style="width:100%">
+      <img src="https://user-images.githubusercontent.com/55063375/115277333-705e2c00-a144-11eb-896c-d1cf01927b9a.png" alt="Classification_example" style="width:100%">
    </figure>
 
    
@@ -36,7 +36,7 @@ Images are classified in 6 classes:
 ![image](https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png)
 
   <figure>
-      <img src="![image](https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png)" alt="Preview_example" style="width:50%">
+      <img src="https://user-images.githubusercontent.com/55063375/115275976-c5993e00-a142-11eb-85cc-756b1c5bbaef.png" alt="Classes" style="width:100%">
    </figure>
 
 
