@@ -41,6 +41,7 @@ Images are classified in 6 classes:
 
 
 All classifications are shown in web gis created using Leaflet library.
+
 https://lraspovic.github.io
 
 This project was a part of master thesis.  
