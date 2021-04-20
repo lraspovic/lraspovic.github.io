@@ -4,6 +4,20 @@
 
 Used for 2 sets of operations:
  - searching, previewing and downloading satellite images
+ 
+ ```python
+ from senL2Aproduct import SenL2Aproduct
+ 
+ # Defining search parameters. Copernicus hub account is required.
+ aoi_images = SenL2Aproduct(username='user', password='password', area_of_interest='aoi.shp', period='[YYYY-MM-DD TO YYYY-MM-DD]', cloudcover='[0 TO 5]')
+ # Searching image(s) that completely cover aoi
+ aoi_images.search_products(cover_aoi=True)
+ # Previewing images
+ aoi_images.show_products(page=1)
+ # Downloading all images
+ aoi_images.download_products(extract=True)
+ 
+ ```
    
    *Preview example*
  <figure>
@@ -11,6 +25,16 @@ Used for 2 sets of operations:
    </figure>
    
  - mozaic creation, clipping and stacking images
+
+```python
+from senL2Aproduct import clip_images, create_mosaic, stack_images
+# Clipping images
+clip_images(images='/images_folder', shape='aoi.shp', shape_crs=3857, bands=[2,3,4], resolution=['10m'])
+# Creating mosaic
+create_mosaic(bands=[2,3,4], folder_path='/clipped_images', level2A=False)
+# Stack images
+stack_images(bands=[2,3,4], folder_path='/mosaic', level2A=False)
+```
 
    *Clip example*
   <figure>
@@ -32,6 +56,15 @@ Images are classified in 6 classes:
       <img src="https://user-images.githubusercontent.com/55063375/115279075-866cec00-a146-11eb-8d10-cdee3fef23d0.png" alt="Classification_example" style="width:50%, height:50%">
    </figure>
 
+```python
+from senL2Aclass import ALCC, XGB_classification
+# Define which Sentinel L2A image (product) to classify.
+alcc_classification = ALCC(image='/SentinelL2Aimage.SAFE', level2A=True)
+xgb_classification  = XGB_classification(image='/SentinelL2Aimage.SAFE', level2A=True)
+# Run the classification algorithm
+alcc_classification.run()
+xgb_classification.run()
+```
 
    *Classifications example*
   <figure>
