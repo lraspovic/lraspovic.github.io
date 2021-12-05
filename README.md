@@ -77,10 +77,4 @@ All classifications are shown in web GIS created using Leaflet.js library.
 
 https://lraspovic.github.io
 
-This project was a part of a master's thesis.
-The entire thesis (in Croatian) can be found at the following link
-https://drive.google.com/file/d/1XA72yIkKAzVB2-j8irlLGd6FEZkXUymr/view?usp=sharing
-
-
-
 
